@@ -1,28 +1,20 @@
-from bs4 import BeautifulSoup
-import requests
-import lxml # Used in BS4 on line 13
-import re
+from bs4 import BeautifulSoup as soup
+from urllib.request import urlopen
 
-headers = {
-    'User-Agent':
-    'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_2) AppleWebKit/601.3.9 (KHTML, like Gecko) Version/9.0.2 Safari/601.3.9'
-}
-url = 'https://www.reddit.com/r/IdiotsInCars/top/'
+my_url = 'https://www.reddit.com/r/IdiotsInCars/top/'
 
-response = requests.get(url, headers=headers)
+#opening up and grabbing page
+uClient = urlopen(my_url)
 
-soup = BeautifulSoup(response.content, 'lxml')
+page_html = uClient.read()
 
-soup.find(string=re.compile("idiot"))
+#close client
+uClient.close()
 
-#print(soup.select('.Post')[0].get_text())
-for item in soup.select('.Post'):
-    try:
-        print('----------------------------------------')
-        print(item.select('._1rZYMD_4xY3gRcSS3p8ODO')[0].get_text())
-        print(item.select('._eYtD2XCVieq6emjKBH3m')[0].get_text())
-        print(item.select('.FHCV02u6Cp2zYL0fhQPsO')[0].get_text())
-        print(item.select('._2INHSNB8V5eaWp4P0rY_mE a[href]')[0]['href'])	
-    except Exception as e:
-        raise e
-        print('')
+#does html parsing
+page_soup = soup(page_html, "html.parser")
+
+#grabs every post
+containers = page_soup.findAll("div", {"class":"_1oQyIsiPHYt6nx7VOmd1sz _1RYN-7H8gYctjOQeL8p2Q7 scrollerItem _3Qkp11fjcAw9I9wtLo8frE _1qftyZQ2bhqP62lbPjoGAh"})
+
+print("I couldn't figure out how to get my code to work, but at least I tried. Look through my version history for my attempts")
