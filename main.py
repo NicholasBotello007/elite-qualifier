@@ -1,20 +1,37 @@
 from bs4 import BeautifulSoup as soup
-from urllib.request import urlopen
+from urllib.request import urlopen as uReq
 
-my_url = 'https://www.reddit.com/r/IdiotsInCars/top/'
+my_url = 'https://www.newegg.com/p/pl?N=100007709%204131&Order=3&PageSize=96'
 
-#opening up and grabbing page
-uClient = urlopen(my_url)
+#opening up a connection, grabbing the page
+uClient = uReq(my_url)
 
+#store everything read into a variable
 page_html = uClient.read()
 
-#close client
+#close connection
 uClient.close()
 
-#does html parsing
+#does html parsing of the raw html, can be printed with print(page_soup.x)
 page_soup = soup(page_html, "html.parser")
 
-#grabs every post
-containers = page_soup.findAll("div", {"class":"_1oQyIsiPHYt6nx7VOmd1sz _1RYN-7H8gYctjOQeL8p2Q7 scrollerItem _3Qkp11fjcAw9I9wtLo8frE _1qftyZQ2bhqP62lbPjoGAh"})
+#grabs every product
+containers = page_soup.findAll("div", {"class":"item-container"})
 
-print("I couldn't figure out how to get my code to work, but at least I tried. Look through my version history for my attempts")
+container = containers[0]
+
+
+for container in containers:
+  brand_container = container.findAll("a", {"class":"item-brand"})
+  brand = brand_container[0].img["title"]
+  
+  product_name = container.a.img["title"]
+
+  shipping_container = container.findAll("li", {"price-ship"})
+  shipping = shipping_container[0].text.strip()
+
+  print("brand: " + brand)
+  print("product_name: " + product_name)
+  print("shipping: " + shipping)
+  print(" ")
+
