@@ -6,17 +6,19 @@ This code may or may not (fingers crossed) scrape r/Idiotsincars posts that have
  - [Usage](#usage) 
  ## Background 
  (This is why this application exists.)
+ 
 
- This project was made to show how many posts actually contain the word "idiot" in them. **Was made mostly as a joke.**
+ **This project was made to show the first 96 bestselling, in-stock GPUs on Newegg.com as fairly priced GPUs are hard to come by these days.**
   ## Install 
   (These are the steps to setup your local environment to run this application.) 
+ 
 
   _idk just fork it or something_
   ## Usage 
-  These are the steps to use the application or interact with it. 
+  (These are the steps to use the application or interact with it). 
   
-  ***hit the run button***
+
+  ***clear, then hit the run button***
   ### Any optional sections
+  is only known to work with the URL given
   
- SQUID GAMES!!!
- ^Based
