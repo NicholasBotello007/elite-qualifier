@@ -22,16 +22,21 @@ container = containers[0]
 
 
 for container in containers:
+  
+  #Getting the Brand name
   brand_container = container.findAll("a", {"class":"item-brand"})
   brand = brand_container[0].img["title"]
   
+  #Gettting the Product name
   product_name = container.a.img["title"]
 
+  #Getting the shipping price
   shipping_container = container.findAll("li", {"price-ship"})
   shipping = shipping_container[0].text.strip()
 
-  print("brand: " + brand)
-  print("product_name: " + product_name)
-  print("shipping: " + shipping)
+  #prints the brand, product name, and shipping price
+  print("Brand: " + brand)
+  print("Product Name: " + product_name)
+  print("Shipping Cost: " + shipping)
   print(" ")
 
